@@ -26,7 +26,11 @@ public class Single_LinkedList {
 				System.out.println("Press 5 for Insertion at Middle After given node");
 				System.out.println("Press 6 to insert item in descending order");
 				System.out.println("Press 7 to insert item in ascending order");
-				System.out.println("Press 8 to Exit");
+				System.out.println("Press 8 to Deletion at first");
+				System.out.println("Press 9 to Deletion at last");
+				System.out.println("Press 10 to Deletion of middle value");
+				System.out.println("Press 11 to Deletion according to item value");
+				System.out.println("Press 12 to Exit");
 				System.out.println("Enter your choice: ");
 				choice = sc.nextInt();
 				switch(choice) {
@@ -72,9 +76,32 @@ public class Single_LinkedList {
 					Insertion_SLL_Ascending();
 					count++;
 					break;
+				case 8:
+					deletionAtFirst();
+					count--;
+					break;
+				case 9:
+					deletionAtLast();
+					count--;
+					break;
+				case 10:
+					mid = (count/2)+1;
+					ptr = start;
+					for(int i=1;i<mid;i++) {
+						ptr = ptr.next;
+					}
+					deletionOfMiddleValue(ptr);
+					count--;
+					break;
+				case 11:	
+					System.out.println("Enter the item value you went to delete: ");
+					item = sc.nextInt();
+					deletionFromItemValue(item);
+					count--;
+					break;
 				}
 			}
-			while(choice!=8);
+			while(choice!=12);
 		 }
 		
 		
@@ -171,6 +198,80 @@ public class Single_LinkedList {
 				ptr = ptr.next;
 			InsertionInMiddleBGN(ptr,item);
 		}
+		
+		
+		static void deletionAtFirst() {
+			Node ptr = start;
+			if(ptr==null) {
+				System.out.println("Empty Linkedlist");
+				return;
+			}
+			start = ptr.next;
+			System.out.println("******Item Deleted Successfully**********");
+		}
+		
+		static void deletionAtLast() {
+			Node ptr = start;
+			if(ptr==null) {
+				System.out.println("Empty Linkedlist");
+				return;
+			}
+			if(ptr.next == null) {
+				start = null;
+				System.out.println("******Item Deleted Successfully**********");
+				return;
+			}
+			Node ptr1 = null;
+			while(ptr.next!=null) {
+				ptr1 = ptr;
+				ptr = ptr.next;
+			}
+			ptr1.next = null;
+			System.out.println("******Item Deleted Successfully**********");
+		}
+		
+		
+		static void deletionOfMiddleValue(Node ptr) {
+			if(start==null) {
+				System.out.println("LinkedList Empty!");
+				return;
+			}
+			if(start.next==null) {
+				start = null;
+				System.out.println("******Item Deleted Successfully**********");
+				return;
+			}
+			Node ptr1 = start;
+			while(ptr1.next!=ptr)
+				ptr = ptr.next;
+			ptr1.next = ptr.next;
+			System.out.println("******Item Deleted Successfully**********");
+		}
+		
+		
+		static void deletionFromItemValue(int item) {
+			if(start==null) {
+				System.out.println("Linkedlist is Empty");
+				return;
+			}
+			if((start.info==item)&&(start.next==null)) {
+				start = null;
+				System.out.println("******Item Deleted Successfully**********");
+				return;
+			}
+			Node ptr1 = start;
+			while((ptr1!=null)&&(ptr1.next.info!=item)) {
+				ptr1 = ptr1.next;
+			}
+			if(ptr1.next.info == item) {
+				ptr1.next = ptr1.next.next;
+				System.out.println("******Item Deleted Successfully**********");
+				}
+			else
+				System.out.println("Item not found in the linkedlist");
+		}
+	
+		
 		
 	}
 

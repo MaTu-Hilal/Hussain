@@ -16,7 +16,8 @@ public class Final {
 			System.out.println("Press 3 for Stack");
 			System.out.println("Press 4 for Queue");
 			System.out.println("Press 5 for Single LinkedList");
-			System.out.println("Press 6 for Exit");
+			System.out.println("Press 6 for doubly LinkedList");
+			System.out.println("Press 7 for Exit");
 			System.out.println("Enter your choice: ");
 			choiceM = sc.nextInt();
 			switch(choiceM) {
@@ -35,9 +36,12 @@ public class Final {
 			case 5:
 				Single_LinkedList sll = new Single_LinkedList();
 				break;
+			case 6:
+				Doubly_linkedList dll = new Doubly_linkedList();
+				break;
 			}
 	}
-	while(choiceM!=6);
+	while(choiceM!=7);
 }
 }
 
